@@ -1,6 +1,6 @@
 ---
-layout:default
-title:lvm练习
+layout: default
+title: lvm练习
 ---
 
 # lvm练习
