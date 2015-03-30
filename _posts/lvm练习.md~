@@ -1,0 +1,44 @@
+# lvm练习
+###创建一个LV
+*磁盘分区：fdisk 装置名，如fdisk /dev/vda
+2.将分区的system id改成8e，标记为lvm：
+   fdisk /dev/vda
+      t
+         分区号
+	    8e
+	    3.pvcreate：pvcreate /dev/vda{1,2,3...}
+	    4.vgcreate：vgcreate -s [PE 大小（默认4M）] vg名  /dev/vda{1,2,3...}
+	    5.lvcreate：lvcreate -L [size] -n lv名 vg名
+	    6.mkfs -t lv名（注意是全路径/dev/vg名/lv名）
+	    7.挂载：mount /dev/vg名/lv名  /mnt/lvm
+	    8.查看
+	       pv:pvdisplay
+	          vg:vgdisplay
+		     lv:lvdisplay
+		      扩大lv容量：
+		      1.分区，创建pv
+		      2.vgextend:vgextend /pv路径  vg名
+		      3.lvresize -L [size] lv路径
+		      4.查看lv：lvdisplay
+		      5.查看/mnt/lvm大小：df /mnt/lvm(没有扩大)
+		      6.resize2fs lv路径  [size]
+		      7.查看/mnt/lvm大小(扩大了)
+		      缩小lv容量
+		      1. resize2fs lv路径 [size](不支持在线缩小容量，所以先解挂)
+		      2.umount  lv路径  /mnt/lvm
+		      3. resize2fs lv路径 [size]
+		      4.再挂载上去：mount lv名 /mnt/lvm
+		      4.查看/mnt/lvm容量：df /mnt/lvm(缩小了)
+		      --------------------------------- 若想将某个pv抽离vg，继续
+		      5.pvdisplay查看那个pv没有使用
+		      6.vgreduce vg名 pv   再查看vg大小，确实小了。
+		      7.pvremove pv
+		      8.将该分区的system id 改回83
+		      删除并关闭lvm
+		      1.解挂 ：umount
+		      2.lvremove lv路径
+		      3.vgchange -a n vg名，将vg取消激活态
+		      4.vgremove vg名
+		      5.pvremove /dev/vda{1,2,3...}
+		      6.将所有分区system id 改回83
+
