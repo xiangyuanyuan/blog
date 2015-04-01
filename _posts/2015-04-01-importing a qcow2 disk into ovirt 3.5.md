@@ -9,7 +9,7 @@ title: importing a qcow2 disk into ovirt 3.5
 之前使用virt-manager 创建的虚拟机，磁盘文件是qcow2格式的，想要将该虚拟机迁移到ovirt中，就要将其转换成ovf格式的，使用engine-image-uploader工具上传 OVF 格式的虚拟机镜像文件到指定 export 存储域。从而可以被 EayunOS 虚拟化管理中心自动识别。
 
 ###步骤
-1. 在虚拟机所在的服务器上，使用[这里](./guest-image-ovf-creator.py)提供的脚本将qcow2格式的虚拟机镜像文件转换成ovf格式的。
+1. 在虚拟机所在的服务器上，使用[这里](../scripts/guest-image-ovf-creator.py)提供的脚本将qcow2格式的虚拟机镜像文件转换成ovf格式的。
    
    * 使用以下命令创建一个包含image 和 master 子目录的目录
 
