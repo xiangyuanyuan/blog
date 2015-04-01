@@ -1,6 +1,6 @@
 ---
-layout:default.html
-title:importing a qcow2 disk into ovirt 3.5
+layout: default.html
+title: importing a qcow2 disk into ovirt 3.5
 ---
 
 #importing a qcow2 disk into ovirt 3.5
