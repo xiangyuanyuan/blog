@@ -1,10 +1,11 @@
 ---
 layout: default.html
-title: importing 
+title: importing a qcow2 disk into ovirt 3.5 
 ---
 
 #importing a qcow2 disk into ovirt 3.5
-###问题概述
+
+### 问题概述
 
 之前使用virt-manager 创建的虚拟机，磁盘文件是qcow2格式的，想要将该虚拟机迁移到ovirt中，就要将其转换成ovf格式的，使用engine-image-uploader工具上传 OVF 格式的虚拟机镜像文件到指定 export 存储域。从而可以被 EayunOS 虚拟化管理中心自动识别。
 
@@ -32,7 +33,7 @@ title: importing
 
 >**注意**
 >
->由于该磁盘文件大小为50G ，而engine的硬盘容量只有50G，因此该步会出现临时目录空间不足的问题。暂时的解决办法如下：
+>在进行第4步时可能会由于临时目录空间不足而失败，比如该磁盘文件大小为50G ，而engine的临时目录可用空间不足50G，因此该步会出现临时目录空间不足的问题。如果硬件条件不支持，暂时的解决办法如下：
 
 1. 在别的有足够空间的服务器上安装 ovirt-image-uploader
 
